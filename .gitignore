@@ -1,0 +1,13 @@
+broker-web/.gradle/
+broker-web/master/.gradle/
+broker-web/master/.settings/
+broker-web/app/build/
+broker-web/app/.settings/
+broker-web/app/bin/
+broker-web/userservice-api/build/
+broker-web/userservice-api/src/main/java/
+broker-web/userservice-api/.settings/
+broker-web/userservice-api/bin/
+*.project
+*.class
+*.classpath

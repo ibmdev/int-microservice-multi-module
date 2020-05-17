@@ -1,0 +1,6 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+includeFlat('app','userservice-api')

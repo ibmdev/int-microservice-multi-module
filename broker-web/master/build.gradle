@@ -1,0 +1,55 @@
+buildscript {
+	ext {
+		springBootVersion = '2.2.7.RELEASE'
+        javaVersion = '1.8'
+        encoding = 'UTF-8'
+        gradleSwaggerGeneratorVersion = '2.18.2' 
+        asciidoctorGradleJvmVersion = '2.4.0'
+        springDependencyManagementVersion = '1.0.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenLocal()
+	}
+	dependencies {
+        classpath "gradle.plugin.org.hidetake:gradle-swagger-generator-plugin:$gradleSwaggerGeneratorVersion"
+		classpath "org.asciidoctor:asciidoctor-gradle-jvm:$asciidoctorGradleJvmVersion"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath "io.spring.gradle:dependency-management-plugin:$springDependencyManagementVersion"
+    }
+}
+// Pour tous les projets
+allprojects {}
+
+// Pour les sous projets
+subprojects {
+    repositories {
+	    mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenLocal()
+    }
+    apply plugin: 'java'
+}
+
+// Projet App Spring Boot 2
+project(':app') {
+    dependencies {
+        compile project (':userservice-api')
+    }
+}
+
+// Projet UserService API
+project(':userservice-api') {
+    
+    // Propriétés du module userservice-api
+    ext.springFoxArtifacts = ["springfox-swagger2", "springfox-swagger-ui"]
+	ext.springFoxVersion = "2.9.2"
+	ext.swaggerCodeGenVersion = "2.4.13"
+    ext.swaggerGeneratorVersion = "2.18.2"
+    ext.apiVersion = "1.0.0"
+}

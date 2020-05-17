@@ -1,4 +1,7 @@
 evaluationDependsOn(':userservice-api')
+afterEvaluate {
+	compileJava.dependsOn('clean')
+}
 ext.javaVersion =  project.hasProperty('javaVersion') ? project.getProperty('javaVersion') : '1.8'
 group = 'fr.sma.sy'
 version = '0.0.1-SNAPSHOT'

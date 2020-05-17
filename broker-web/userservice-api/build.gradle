@@ -2,6 +2,7 @@ afterEvaluate {
 	generateSwaggerCode.finalizedBy(project.tasks.copySwaggerGeneratedCode)
 	compileJava.dependsOn('generateSwaggerCode')
 	generateSwaggerCode.dependsOn('validateSwagger')
+	validateSwagger.dependsOn('clean')
 	
 }
 version "${apiVersion}"

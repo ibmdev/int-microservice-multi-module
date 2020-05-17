@@ -1,6 +1,8 @@
 afterEvaluate {
 	generateSwaggerCode.finalizedBy(project.tasks.copySwaggerGeneratedCode)
 	compileJava.dependsOn('generateSwaggerCode')
+	generateSwaggerCode.dependsOn('validateSwagger')
+	
 }
 version "${apiVersion}"
 group 'fr.sma.svc.bw'
@@ -26,11 +28,9 @@ dependencies {
 // Clean
 clean.doFirst {
     delete "src/main/java"
-    println "Suppression des sources Java"
 }
 
 task copySwaggerGeneratedCode(type: Copy) {
-	println "Copie des ressources swagger"
 	from "${buildDir}/swagger-code"
 	into "${projectDir}"
 }
@@ -39,6 +39,7 @@ generateSwaggerCode {
 	components = ['models', 'apis']
 	inputFile = file('src/main/resources/swagger/swagger.yml')
 	language = 'spring'
-	println "Build du code swagger"
 }
-
+validateSwagger {
+	inputFile = file('src/main/resources/swagger/swagger.yml')
+}

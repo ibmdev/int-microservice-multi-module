@@ -1,4 +1,11 @@
 pluginManagement {
+    urlArtifactory =  "${urlArtifactory}"
+    userArtifactory =  "${userArtifactory}"
+    passwordArtifactory =  "${passwordArtifactory}"
+    println "urlArtifactory :  ${urlArtifactory}"
+	println "userArtifactory :  ${userArtifactory}"
+    println "passwordArtifactory :  ${passwordArtifactory}"
+    
     repositories {
         mavenCentral()
     }
